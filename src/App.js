@@ -23,13 +23,56 @@ class App extends Component {
         }
     }
 
+    handleQty=(id)=>{
+        console.log("id",id);
+        const elementsIndex = this.state.products.findIndex(element => element.id == id );
+        let newArray = [...this.state.products]
+        // let newArray2 = [...this.state.cart.items]
+        newArray[elementsIndex] = {...newArray[elementsIndex], cartQuantity: 1}
+        this.setState({
+            products: newArray,
+            cart:
+            {items:[...this.state.cart.items,newArray[elementsIndex]]
+            }
+            });
+    }
+
+    handleQtyAdd=(id)=>{
+        const elementsIndex = this.state.products.findIndex(element => element.id == id );
+        let newArray = [...this.state.products]
+        newArray[elementsIndex] = {...newArray[elementsIndex], cartQuantity: newArray[elementsIndex].cartQuantity+1}
+        const elementsIndex2 = this.state.cart.items.findIndex(element => element.id == id );
+        let newArray2 = [...this.state.cart.items]
+        newArray2[elementsIndex2] = {...newArray2[elementsIndex2], cartQuantity: newArray[elementsIndex].cartQuantity+1}
+        this.setState({
+            products: newArray,
+            cart:
+            {items:newArray2
+            }
+            });
+    }
+
+    handleQtyDec=(id)=>{
+        const elementsIndex = this.state.products.findIndex(element => element.id == id );
+        let newArray = [...this.state.products]
+        newArray[elementsIndex] = {...newArray[elementsIndex], cartQuantity: newArray[elementsIndex].cartQuantity-1}
+        const elementsIndex2 = this.state.cart.items.findIndex(element => element.id == id );
+        let newArray2 = [...this.state.cart.items]
+        newArray2[elementsIndex2] = {...newArray2[elementsIndex2], cartQuantity: newArray[elementsIndex].cartQuantity+1}
+        this.setState({
+            products: newArray,
+            cart:
+            {items:newArray2
+            }
+            });
+    }
 
     render() {
         return (
             <div>
                 <h8k-navbar header={title}></h8k-navbar>
                 <div className="layout-row shop-component">
-                    <ProductList products={this.state.products}/>
+                    <ProductList products={this.state.products} handleQty={this.handleQty} handleQtyAdd={this.handleQtyAdd} handleQtyDec={this.handleQtyDec}/>
                     <Cart cart={this.state.cart}/>
                 </div>
             </div>

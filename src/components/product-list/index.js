@@ -23,22 +23,22 @@ export default class ProductList extends Component {
                                 </div>
                                 <div className="card-actions justify-content-center pa-4">
 
-                                    <button className="x-small outlined" data-testid="btn-item-add">
+                                    <button className="x-small outlined" data-testid="btn-item-add" onClick={()=>this.props.handleQty(product.id)}>
                                         Add To Cart
                                     </button>
 
                                     <div className="layout-row justify-content-between align-items-center">
                                         <button className="x-small icon-only outlined"
-                                                data-testid="btn-quantity-subtract">
+                                                data-testid="btn-quantity-subtract" onClick={()=>this.props.handleQtyDec(product.id)}>
                                             <i className="material-icons">remove</i>
                                         </button>
 
                                         <input type="number"
                                                disabled
-                                               className="cart-quantity" data-testid="cart-quantity"/>
+                                               className="cart-quantity" data-testid="cart-quantity" value={product.cartQuantity}/>
 
                                         <button className="x-small icon-only outlined"
-                                                data-testid="btn-quantity-add">
+                                                data-testid="btn-quantity-add" onClick={()=>this.props.handleQtyAdd(product.id)}>
                                             <i className="material-icons">add</i>
                                         </button>
                                     </div>
