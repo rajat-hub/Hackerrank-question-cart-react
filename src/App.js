@@ -43,7 +43,8 @@ class App extends Component {
         newArray[elementsIndex] = {...newArray[elementsIndex], cartQuantity: newArray[elementsIndex].cartQuantity+1}
         const elementsIndex2 = this.state.cart.items.findIndex(element => element.id == id );
         let newArray2 = [...this.state.cart.items]
-        newArray2[elementsIndex2] = {...newArray2[elementsIndex2], cartQuantity: newArray[elementsIndex].cartQuantity+1}
+        if(newArray)
+        newArray2[elementsIndex2] = {...newArray2[elementsIndex2], cartQuantity: newArray2[elementsIndex].cartQuantity+1}
         this.setState({
             products: newArray,
             cart:
@@ -58,7 +59,7 @@ class App extends Component {
         newArray[elementsIndex] = {...newArray[elementsIndex], cartQuantity: newArray[elementsIndex].cartQuantity-1}
         const elementsIndex2 = this.state.cart.items.findIndex(element => element.id == id );
         let newArray2 = [...this.state.cart.items]
-        newArray2[elementsIndex2] = {...newArray2[elementsIndex2], cartQuantity: newArray[elementsIndex].cartQuantity+1}
+        newArray2[elementsIndex2] = {...newArray2[elementsIndex2], cartQuantity: newArray2[elementsIndex].cartQuantity+1}
         this.setState({
             products: newArray,
             cart:
